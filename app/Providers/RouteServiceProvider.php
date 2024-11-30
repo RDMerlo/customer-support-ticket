@@ -24,17 +24,36 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+//        RateLimiter::for('api', function (Request $request) {
+//            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+//        });
+//
+//        $this->routes(function () {
+//            Route::middleware('api')
+//                ->prefix('api')
+//                ->group(base_path('routes/api.php'));
+//
+//            Route::middleware('web')
+//                ->group(base_path('routes/web.php'));
+//        });
 
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
+        $this->mapWebRoutes();
+    }
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-        });
+    protected function mapWebRoutes(): void
+    {
+//        Route::prefix('admin')
+//            ->as('admin.')
+//            ->middleware(['web', 'auth'])
+//            ->group(base_path('routes/admin.php'));
+
+        Route::prefix('admin')
+            ->as('admin.')
+            ->middleware(['web', 'auth', 'checkUserRoleForAdminMenu:admin,editor']) // Добавляем middleware здесь
+            ->group(base_path('routes/admin.php'));
+
+        Route::middleware(['web'])->group(base_path('routes/web.php'));
+
+        Route::middleware(['web'])->group(base_path('routes/auth.php'));
     }
 }
