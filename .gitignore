@@ -26,3 +26,4 @@ Homestead.json
 *.iml
 .idea
 out
+!/resources/views/auth/passwords/
