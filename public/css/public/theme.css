@@ -1,0 +1,53 @@
+header {
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    background-color: #b481bb;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+main {
+    margin: 25px 50px 25px 50px;
+    /*width: 100%;*/
+    /*min-height: 100%;*/
+    background-color: #b481bb;
+    color: white;
+    border-radius: 50px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+section {
+    padding: 20px 50px 20px 50px;
+}
+
+footer {
+    padding: 20px 50px 20px 50px;
+    background-color: #b481bb;
+    color: white;
+    height: auto;
+    /*margin-top: -80px;*/
+    box-shadow: 0px 5px 10px 8px rgba(0, 0, 0, 0.5);
+}
+
+.btn-submit {
+    background-color: #00cd00;
+    color: white;
+}
+
+.btn-clear-form {
+    background-color: #ff8100;
+    color: white;
+}
+
+a.nav-link {
+    font-weight: 600;
+}
+
+a.nav-link.active {
+    text-decoration: underline;
+    /*font-weight: 200;*/
+}
