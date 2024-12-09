@@ -37,46 +37,25 @@
             <div class="col-md-3">
                 <div class="list-group">
 
-{{--                    --}}{{--О проекте--}}
-{{--                    <a href="{{ route('admin.landing_block.edit_section', ['slug' => 'about']) }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.about') }}--}}
-{{--                    </a>--}}
+                    {{--Категория заявок--}}
+                    <a href="{{ route('admin.category_record.index') }}"
+                       class="list-group-item list-group-item-action ">
+                        {{ __('sections.category_record') }}
+                    </a>
 
-{{--                    --}}{{--Страны и города--}}
-{{--                    <a href="{{ route('admin.country.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.country') }}--}}
-{{--                    </a>--}}
+                    {{--Статус заявок--}}
+                    <a href="{{ route('admin.processing_statuses.index') }}"
+                       class="list-group-item list-group-item-action ">
+                        {{ __('sections.processing_statuses') }}
+                    </a>
 
-{{--                    <a href="{{ route('admin.city.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.city') }}--}}
-{{--                    </a>--}}
-
-{{--                    <a href="{{ route('admin.map.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.map') }}--}}
-{{--                    </a>--}}
+                    {{--Заявки--}}
+                    <a href="{{ route('admin.support_ticket_record.index') }}"
+                       class="list-group-item list-group-item-action ">
+                        {{ __('sections.support_ticket_record') }}
+                    </a>
 
 
-{{--                    --}}{{--Публичные мероприятия--}}
-{{--                    <a href="{{ route('admin.calendar_event.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.calendar_event') }}--}}
-{{--                    </a>--}}
-
-{{--                    --}}{{--Прошедшие мероприятия--}}
-{{--                    <a href="{{ route('admin.past_event.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.past_event') }}--}}
-{{--                    </a>--}}
-
-{{--                    --}}{{--Эксперты--}}
-{{--                    <a href="{{ route('admin.expert.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.expert') }}--}}
-{{--                    </a>--}}
 
 {{--                    --}}{{--База знаний--}}
 {{--                    <div class="accordion accordion-flush" id="accordionExample">--}}
@@ -111,35 +90,6 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
-
-{{--                    --}}{{--Лучшие практики--}}
-{{--                    <a href="{{ route('admin.best_practice.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.best_practice') }}--}}
-{{--                    </a>--}}
-
-{{--                    --}}{{--Социологическая панель--}}
-{{--                    <a href="{{ route('admin.landing_block.edit_section', ['slug' => 'soc_panel']) }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.soc_panel') }}--}}
-{{--                    </a>--}}
-
-{{--                    --}}{{--Подписчики--}}
-{{--                    <a href="{{ route('admin.subscriber.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.subscriber') }}--}}
-{{--                    </a>--}}
-
-{{--                    --}}{{--Контакты--}}
-{{--                    <a href="{{ route('admin.landing_block.edit_section', ['slug' => 'contacts']) }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.contacts') }}--}}
-{{--                    </a>--}}
-
-{{--                    <a href="{{ route('admin.feedback.index') }}"--}}
-{{--                       class="list-group-item list-group-item-action ">--}}
-{{--                        {{ __('sections.feedback') }}--}}
-{{--                    </a>--}}
                 </div>
             </div>
 
