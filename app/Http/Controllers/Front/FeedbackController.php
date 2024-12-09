@@ -6,8 +6,10 @@ use App\Domain\CategoryRecord\Models\CategoryRecord;
 use App\Domain\ProcessingStatuses\Models\ProcessingStatuses;
 use App\Domain\SupportTicketRecord\Models\SupportTicketRecord;
 use App\Http\Controllers\Controller;
+use App\Services\MailerService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FeedbackController extends Controller
 {
@@ -45,13 +47,38 @@ class FeedbackController extends Controller
                     $processingStatus = ProcessingStatuses::where('slug', 'new')->first();
 
                     // Сохранение результата в базе данных
-                    SupportTicketRecord::create([
+                    $supportTicketRecord = SupportTicketRecord::create([
                         'fullName' => $request->input('fullName'),
                         'email' => $request->input('email'),
                         'message' => $request->input('message'),
                         'category_record_id' => $categoryRecordExists->id,
                         'processing_statuses_id' => $processingStatus ? $processingStatus->id : 1,
                     ]);
+
+                    try {
+                        $subject = "M.Support: новый запрос";
+
+                        $message = "Категория: ". $supportTicketRecord->categoryRecord->name ."<br/>";
+                        $message.= "ФИО: ". $supportTicketRecord->fullName ."<br/>";
+                        $message.= "Почтовый адрес: ". $supportTicketRecord->email ."<br/>";
+                        $message.= "Запрос: <br/>". $supportTicketRecord->message ."<br/>";
+                        $message.= "<br/><a href=" . route('admin.support_ticket_record.show', ['support_ticket_record' => $supportTicketRecord]) . ">Открыть</a>";
+
+                        $toEmail = env('SMTP_TO_USER');
+
+                        $result = (new MailerService())->send($toEmail, $subject, $message);
+
+                        if (!$result["output"]){
+                            Log::info('Результат отправки почты. Код: '. $result['code'] . ". " . $result["message"]);
+                            $resultSendData = false;
+                        } else {
+                            $resultSendData = true;
+                        }
+
+                    } catch (\Exception $exception) {
+                        Log::info('Ошибка при отправке почты: ' . $exception->getMessage());
+                        $resultSendData = false;
+                    }
 
                     return response()->json(['success' => true, 'message' => 'Форма успешно отправлена и сохранена.']);
                 } else {
