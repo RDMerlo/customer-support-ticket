@@ -15,8 +15,8 @@
 <header>
     <nav class="navbar navbar-light navbar-expand-md bg-white shadow-sm">
         <div class="container-fluid">
-            <img src="{{ asset('img/admin/niioz-logo.svg') }}" width="120"
-                 alt="НИИ Организации Здравоохранения и Медицинского Менеджмента">
+{{--            <img src="{{ asset('img/admin/niioz-logo.svg') }}" width="120"--}}
+{{--                 alt="НИИ Организации Здравоохранения и Медицинского Менеджмента">--}}
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link px-3" href="/" target="_blank">На сайт</a>
