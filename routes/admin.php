@@ -1,6 +1,5 @@
 <?php
 
-use App\Domain\CategoryRecord\Models\CategoryRecord;
 //use App\Http\Controllers\Admin\BestPracticController;
 //use App\Http\Controllers\Admin\CalendarEventController;
 //use App\Http\Controllers\Admin\CategoryKnowledgeBaseController;
@@ -15,10 +14,11 @@ use App\Domain\CategoryRecord\Models\CategoryRecord;
 //use App\Http\Controllers\Admin\RedactorFileController;
 //use App\Http\Controllers\Admin\RoleController;
 //use App\Http\Controllers\Admin\SubscriberController;
-use App\Domain\ProcessingStatuses\Models\ProcessingStatuses;
-use App\Domain\SupportTicketRecord\Models\SupportTicketRecord;
+use App\Http\Controllers\Admin\CategoryRecordController;
 use App\Http\Controllers\Admin\IndexController;
 //use App\Http\Controllers\Admin\TypeResearchController;
+use App\Http\Controllers\Admin\ProcessingStatusesController;
+use App\Http\Controllers\Admin\SupportTicketRecordController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('/', function () {
@@ -31,9 +31,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::resource('category_record', CategoryRecord::class);
-Route::resource('processing_statuses', ProcessingStatuses::class);
-Route::resource('support_ticket_record', SupportTicketRecord::class);
+Route::resource('category_record', CategoryRecordController::class);
+Route::resource('processing_statuses', ProcessingStatusesController::class);
+Route::resource('support_ticket_record', SupportTicketRecordController::class);
 
 
 //Route::resource('best_practice', BestPracticController::class);
