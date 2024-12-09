@@ -27,3 +27,5 @@ Homestead.json
 .idea
 out
 !/resources/views/auth/passwords/
+
+composer.lock
