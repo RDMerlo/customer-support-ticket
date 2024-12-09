@@ -1,18 +1,19 @@
 <section>
     <h2 class="section-title text-center">Заполнение формы обратной связи</h2>
     <div class="row">
-        <form id="feedbackForm">
+        <form id="feedbackForm" method="post" enctype="multipart/form-data" action="{{ route('feedback.submit') }}">
+            @csrf
             <div class="mb-3">
                 <label for="exampleInputFullName" class="form-label">ФИО</label>
-                <input type="text" class="form-control" id="exampleInputFullName" required>
+                <input type="text" class="form-control" name="fullName" id="exampleInputFullName" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="exampleInputEmail" required>
+                <input type="email" class="form-control" name="email" id="exampleInputEmail" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputMessage" class="form-label">Сообщение</label>
-                <textarea id="exampleInputMessage" name="exampleInputMessage" class="form-control" cols="30" rows="7" required></textarea>
+                <textarea id="exampleInputMessage" name="message" class="form-control" cols="30" rows="7" required></textarea>
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
