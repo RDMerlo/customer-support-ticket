@@ -19,12 +19,12 @@ class SupportTicketRecord extends Model
         'processing_statuses_id',
     ];
 
-    public function categoryRecord()
+    public function categoryRecord(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(CategoryRecord::class);
     }
 
-    public function processingStatus()
+    public function processingStatuses(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(ProcessingStatuses::class);
     }
