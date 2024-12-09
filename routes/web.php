@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\FeedbackController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('public.main');
 });
+
+Route::post('/feedback', [FeedbackController::class, 'submit'])->name('feedback.submit');
+
 
 //Auth::routes();
 
