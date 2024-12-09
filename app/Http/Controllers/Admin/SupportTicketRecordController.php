@@ -14,9 +14,9 @@ class SupportTicketRecordController extends Controller
      */
     public function index()
     {
-        $categoryRecords = SupportTicketRecord::all();
-        return View::make("", [
-            'categoryRecords' => $categoryRecords
+        $supportTicketRecords = SupportTicketRecord::orderBy('created_at', 'desc')->get();
+        return View::make("admin.support_ticket_record.index", [
+            'supportTicketRecords' => $supportTicketRecords
         ]);
     }
 
@@ -39,9 +39,11 @@ class SupportTicketRecordController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(SupportTicketRecord $support_ticket_record)
     {
-        //
+        return View::make("admin.support_ticket_record.show", [
+            'supportTicketRecord' => $support_ticket_record,
+        ]);
     }
 
     /**
