@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Domain\CategoryRecord\Actions\CreateCategoryRecordAction;
+use App\Domain\CategoryRecord\Actions\UpdateCategoryRecordAction;
+use App\Domain\CategoryRecord\DataTransferObjects\CreateCategoryRecordData;
+use App\Domain\CategoryRecord\DataTransferObjects\UpdateCategoryRecordData;
 use App\Domain\CategoryRecord\Models\CategoryRecord;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class CategoryRecordController extends Controller
@@ -15,7 +20,7 @@ class CategoryRecordController extends Controller
     public function index()
     {
         $categoryRecords = CategoryRecord::all();
-        return View::make("", [
+        return View::make("admin.category_record.index", [
             'categoryRecords' => $categoryRecords
         ]);
     }
@@ -31,9 +36,13 @@ class CategoryRecordController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRecordAction $action, CreateCategoryRecordData $data)
     {
-        //
+        $action->execute(Auth::user(), $data);
+
+        return redirect()
+            ->route('admin.category_record.index')
+            ->with('success', trans('message.admin.default.create.success'));
     }
 
     /**
@@ -47,24 +56,32 @@ class CategoryRecordController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(CategoryRecord $category_record)
     {
-        //
+        return View::make('admin.category_record.form', compact('category_record'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategoryRecordAction $action, UpdateCategoryRecordData $data, CategoryRecord $category_record)
     {
-        //
+        $action->execute($category_record, $data);
+
+        return redirect()
+            ->route('admin.category_record.index')
+            ->with('success', trans('message.admin.default.create.success'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CategoryRecord $category_record)
     {
-        //
+        $category_record->delete();
+
+        return redirect()
+            ->route('admin.category_record.index')
+            ->with('success', trans('message.admin.default.delete.success'));
     }
 }
