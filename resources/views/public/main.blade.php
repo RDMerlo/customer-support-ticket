@@ -1,8 +1,8 @@
 @extends('public.layouts.index')
 
 @section('content')
-        @include('public.blocks_template.feedback')
-{{--        @include('public.blocks_template.about')--}}
+{{--        @include('public.blocks_template.feedback')--}}
+        @include('public.blocks_template.url-analysis')
 {{--        @include('public.blocks_template.researches')--}}
 {{--        @include('public.blocks_template.events_block.events')--}}
 {{--        @include('public.blocks_template.past_events')--}}

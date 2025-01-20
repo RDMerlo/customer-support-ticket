@@ -4,8 +4,8 @@
         <form id="urlAnalysisForm" method="post" enctype="multipart/form-data" action="{{ route('url_analysis.submit') }}">
             @csrf
             <div class="mb-3">
-                <label for="exampleInputURL" class="form-label">URL-адрес</label>
-                <input type="text" class="form-control" name="url" id="exampleInputURL" required>
+                <label for="exampleInputURL" class="form-label">URL-адреса (по одному на строку)</label>
+                <textarea class="form-control" name="urls" id="exampleInputURL" rows="5" required></textarea>
             </div>
             <div class="alert" role="alert" style="display: none;"></div>
             <div class="text-center">
@@ -47,15 +47,18 @@
                     console.log(data);
                     if (data.success) {
                         alertDiv.classList.add('alert-success');
-                        alertDiv.textContent = 'Форма успешно отправлена и сохранена.';
+                        alertDiv.textContent = 'Форма успешно отправлена.\nРезультаты:';
+                        data.results.forEach(result => {
+                            alertDiv.textContent += `\n${result.url}: ${result.slug_category_record};`;
+                        });
                     } else {
                         alertDiv.classList.add('alert-danger');
                         alertDiv.textContent = 'Ошибка при отправке формы.';
                     }
                     alertDiv.style.display = 'block';
-                    setTimeout(() => {
-                        alertDiv.style.display = 'none';
-                    }, 5000);
+                    // setTimeout(() => {
+                    //     alertDiv.style.display = 'none';
+                    // }, 5000);
                 })
                 .catch(error => {
                     console.error('Ошибка:', error);
