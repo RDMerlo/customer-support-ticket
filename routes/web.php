@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\FeedbackController;
+use App\Http\Controllers\Front\URLAnalysisController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::post('/feedback', [FeedbackController::class, 'submit'])->name('feedback.submit');
+Route::post('/url-analysis', [URLAnalysisController::class, 'submit'])->name('url_analysis.submit');
 
 
 //Auth::routes();
